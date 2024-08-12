@@ -1,0 +1,1 @@
+CREATE DATABASE `clickhouse_vps_data`;

@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest-alpine
+    container_name: clickhouse
+    environment:
+      CLICKHOUSE_USER: ${CLICKHOUSE_DB_USER}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_DB_PASSWORD}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+    ports:
+      - 8123:8123
+    volumes:
+      - ./docker_images/clickhouse/logs:/var/log/clickhouse-server/ # logs
+      - ./docker_images/clickhouse/init:/docker-entrypoint-initdb.d # folder with database initialization scripts.
+    restart: always
